@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class Social_networks extends Model {
 
     static associate(models) {
-      
+     
+      Social_networks.belongsTo(models.Users, {
+        foreignKey: 'user_id'
+      })
     }
   };
   Social_networks.init({
