@@ -9,10 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       expiration: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       user_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'users',
           key: 'id'
