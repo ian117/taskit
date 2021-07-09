@@ -19,12 +19,42 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Tasks.init({
-    title: DataTypes.STRING,
-    description: DataTypes.STRING,
-    due_date: DataTypes.DATE,
-    user_id: DataTypes.INTEGER,
-    category_id: DataTypes.INTEGER,
-    status_id: DataTypes.INTEGER,
+    title: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      validate: {
+        
+      }
+    },
+    due_date: {
+      type: DataTypes.DATE,
+      validate: {
+        
+      }
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: true
+      }
+    },
+    category_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        
+      }
+    },
+    status_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        
+      }
+    },
     completed: DataTypes.BOOLEAN
   }, {
     sequelize,

@@ -13,7 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Social_networks.init({
-    user_id: DataTypes.INTEGER,
+    user_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: true
+      }
+    },
     provider: DataTypes.STRING
   }, {
     sequelize,

@@ -15,8 +15,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Categories.init({
-    name: DataTypes.STRING,
-    created_by: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    created_by: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: true
+      }
+    }
   }, {
     sequelize,
     modelName: 'Categories',
