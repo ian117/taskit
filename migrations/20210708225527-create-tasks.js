@@ -9,15 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
         type: Sequelize.STRING
       },
       due_date: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
@@ -25,6 +28,7 @@ module.exports = {
         }
       },
       category_id: {
+        allowNull: false,
         type: Sequelize.INTEGER, 
         references: {
           model: 'categories',
@@ -39,6 +43,7 @@ module.exports = {
         }
       },
       completed: {
+        defaultValue: false,
         type: Sequelize.BOOLEAN
       },
       created_at: {
