@@ -20,10 +20,6 @@
     "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "nodemon": "^2.0.12"
-=======
-    "nodemon": "^2.0.11"
->>>>>>> 3bb8c9890afa893be4b859f6b08b40989422bfb2
   }
 }
