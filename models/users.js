@@ -1,4 +1,7 @@
 'use strict';
+
+const bcrypt = require(`bcrypt`);
+
 const {
   Model
 } = require('sequelize');
@@ -59,5 +62,16 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Users',
     tableName: 'users'
   });
+
+  Users.beforeCreate(async(user) => {
+    try{
+      let hash = await bcrypt.hash(user.password, 8);
+      user.password = hash;
+      return user.password
+    }catch(error){
+      throw new Error(`No se pudo encriptar la contraseña`);
+    }
+  });
+
   return Users;
 };
