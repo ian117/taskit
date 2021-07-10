@@ -24,5 +24,19 @@ passport.use(new LocalStrategy({
 }));
 
 //Serialización
+//firmar los datos del usuario
+passport.serializeUser((user, done) => {
+    return done(null, user.id);
+});
 
 //Desialización
+//Obtener los datos del usuario a partir del id
+passport.deserializeUser(async(id, done) => {
+    try{
+        let user = await Users.findByPk(id, {plain: true});
+    //request -> request.user
+        done(null, user); 
+    }catch(error){
+        return done(error);
+    }
+});

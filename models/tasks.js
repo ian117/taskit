@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     user_id: {
       type: DataTypes.INTEGER,
       validate: {
-        notNull: true
+        allowNull: true
       }
     },
     category_id: {
