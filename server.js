@@ -27,6 +27,22 @@ app.get(`/register`, (request, response, next) => {
     response.render(`pages/register`, {title: `Registarse`});
 });
 
+//Página de categorías: categories
+//Restringir acceso a usuarios NO autenticados
+app.get(`/categorias`, (request, response, next) => {
+    response.render(`pages/categories`, {title: `Categorias`, username: ``});
+});
+
+//Página del estado: estatus
+app.get(`/estatus`, (request, response, next) => {
+    response.render(`pages/edit-category`, {title: `Estado`, username: ``});
+});
+
+//Página de la tarea: tasks
+app.get(`/tareas`, (request, response, next) => {
+    response.render(`pages/tasks`, {title: `Tareas`, items: ``, message: ``});
+});
+
 
 
 

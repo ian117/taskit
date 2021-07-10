@@ -6,10 +6,10 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER  //¿ STRING ?
       },
       user_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER, 
         references: {
           model: 'users',
           key: 'id'
