@@ -1,0 +1,1 @@
+Llamadas hacia la base de datos para enviarselos a los controladores
