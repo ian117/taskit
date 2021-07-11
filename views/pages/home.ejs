@@ -3,8 +3,15 @@
 <div>
     <div class="container">
         <h2>Mantente organizado con Taskit</h2>
-        <button>Comienza ahora</button>
+        <button id="redirectThis" onclick="">Comienza ahora</button>
     </div>
 </div>
+<script>
+    const element = document.getElementById("redirectThis")
+
+    element.addEventListener("click", () => {
+        window.location.href = "/categorias";
+    })
+</script>
 <%- include('../template/footer') -%>
 
