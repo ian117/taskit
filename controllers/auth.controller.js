@@ -67,14 +67,3 @@ module.exports = {
     logout,
 }
 
-// module.exports= {
-//     renderLogin,
-//     renderRegister,
-//     register,
-//     logout,
-//     localAuth,
-//     gAuthStrategy,
-//     gCallback,
-//     fAuthStrategy,
-//     fCallback
-// }

@@ -37,16 +37,16 @@ passport.use(new GoogleStrategy({
 }));
 
 
-//Estrategia Facebook
-// passport.use(new FacebookStrategy({
-//     clientID: process.env.FB_CLIENTID,
-//     clientSecret: process.env.FB_SECRET,
-//     callbackURL: process.env.FB_REDIRECT_URI
-//   },
-//   (accessToken, refreshToken, profile, done) => {
-//     return done(null, profile);
-//   }
-// ));
+// Estrategia Facebook
+passport.use(new FacebookStrategy({
+    clientID: process.env.FB_CLIENTID,
+    clientSecret: process.env.FB_SECRET,
+    callbackURL: process.env.FB_REDIRECT_URI
+  },
+  (accessToken, refreshToken, profile, done) => {
+    return done(null, profile);
+  }
+));
 
 
 

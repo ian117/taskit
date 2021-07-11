@@ -20,8 +20,8 @@ authRouter.get(`/logout`, authCtrl.logout);
 
 //Autenticación por medio de facebook y google
 authRouter.get('/auth/google', authCtrl.gStrategy);
-// authRouter.get('/auth/facebook', authCtrl.fbStrategy);
+authRouter.get('/auth/facebook', authCtrl.fbStrategy);
 authRouter.get('/auth/google/callback', authCtrl.gAuthCallback);
-// authRouter.get('/auth/facebook/callback', authCtrl.fbAuthCallback)
+authRouter.get('/auth/facebook/callback', authCtrl.fbAuthCallback)
 
 module.exports = authRouter;
