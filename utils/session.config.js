@@ -1,8 +1,8 @@
-const session = require(`express-session`);
+const session = require("express-session");
 
-const sessionConf = session ({
-    secret: `academlo secret`,
-    resave: `false`,
+const sessionConf = session({
+    secret: "academlo secret",
+    resave: false,
     saveUninitialized: true
 });
 

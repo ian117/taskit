@@ -1,14 +1,15 @@
 //Modulos
 
 require(`dotenv`).config();
-require(`./config/passport`);
 
 const express = require(`express`);
 const path = require(`path`);
 const passport = require(`passport`);
-const session = require(`./utils/session.config`);
-const authRouter = require(`./routes/auth.routes`);
+const session = require(`./utils/session.config.js`);
+const authRouter = require(`./routes/auth.routes.js`);
 const catRouter = require(`./routes/category.routes`);
+
+require(`./config/passport`);
 
 const app = express();
 
@@ -26,16 +27,9 @@ app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Página principal: home
-app.get(`/`, (request, response, nxt) => {
-    response.render(`pages/home`, {title: `Inicio`});
-});
-
+//Middwre de app
 app.use(authRouter);
 app.use(catRouter);
-
-
-
 
 module.exports = app;
 
