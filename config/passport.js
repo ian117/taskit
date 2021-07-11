@@ -1,4 +1,5 @@
 //Definicion de la estrategia local con sus configuraciones
+require("dotenv").config();
 const bcrypt = require(`bcrypt`);
 const passport = require(`passport`);
 const LocalStrategy = require(`passport-local`).Strategy;
@@ -60,6 +61,7 @@ passport.serializeUser((profile, done) => {
 //Desialización
 //Obtener los datos del usuario a partir del id
 passport.deserializeUser(async (profile, done) => {
+    console.log(profile)
   //Vamos a obtener los datos del usuario a partir del ID
   try{
     switch(profile.provider){
