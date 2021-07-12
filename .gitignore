@@ -1,3 +1,7 @@
+# Node environment
 node_modules
-
 .env
+
+# Test / TDD
+__test__
+coverage
