@@ -52,7 +52,7 @@ passport.use(new FacebookStrategy({
 
 //Serialización
 //firmar los datos del usuario
-passport.serializeUser((profile, done) => {
+passport.serializeUser(async(profile, done) => {
     //Firmar los datos del usuario
     return done(null, profile);
 });

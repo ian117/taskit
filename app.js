@@ -5,9 +5,10 @@ require(`dotenv`).config();
 const express = require(`express`);
 const path = require(`path`);
 const passport = require(`passport`);
-const session = require(`./utils/session.config.js`);
-const authRouter = require(`./routes/auth.routes.js`);
+const session = require(`./utils/session.config`);
+const authRouter = require(`./routes/auth.routes`);
 const catRouter = require(`./routes/category.routes`);
+const userRouter = require(`./routes/user.routes`);
 
 require(`./config/passport`);
 
@@ -30,6 +31,7 @@ app.use(passport.session());
 //Middwre de app
 app.use(authRouter);
 app.use(catRouter);
+app.use(userRouter);
 
 module.exports = app;
 

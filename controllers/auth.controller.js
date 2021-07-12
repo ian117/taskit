@@ -1,15 +1,17 @@
 const passport = require('passport');
-const {newUser} = require("../services/auth.service.js");
+const {newUser} = require('../services/auth.service.js');
 
-const gScope = ['email', 'profile'];
-const fbScope = ['email', 'public_profile'];
+// const gScope = ['email', 'profile'];
+// const fbScope = ['email', 'public_profile'];
 
-const gStrategy = passport.authenticate("google",  { 
-    session: true, scope: gScope
+const gStrategy = passport.authenticate('google', {
+    session: true, 
+    scope: ['email', 'profile']
 });
 
-const fbStrategy = passport.authenticate("facebook", { 
-    session: true, scope: fbScope
+const fbStrategy = passport.authenticate('facebook', { 
+    session: true, 
+    scope: ['email', 'public_profile']
 });
 
 const gAuthCallback = passport.authenticate('google', {
@@ -22,7 +24,7 @@ const fbAuthCallback = passport.authenticate('facebook', {
     failureRedirect: '/login'
 });
 
-const LocalStrategy = passport.authenticate("local", {
+const LocalStrategy = passport.authenticate('local', {
     successRedirect: '/categorias',
     failureRedirect: '/login'
 });
@@ -43,7 +45,7 @@ const register = async (req, res, next) => {
     let {firstname, lastname, email, password} = req.body;
     try{
         await newUser({firstname, lastname, email, password});
-        res.redirect("/registro");
+        res.redirect("/register");
     }catch(error){
         next(error);
     }
