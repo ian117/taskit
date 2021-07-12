@@ -19,6 +19,24 @@ const createCategory = async({name, userId}) => {
     }
 }
 
+const categoryById = async(categoryId) => {
+    try{
+        let categories = await Categories.findByPk(categoryId);
+        return categories
+    }catch(error){
+        throw new Error(error)
+    }
+}
+
+const updateCategory = async({name, categoryId}) => {
+    try{
+        let categories = await Categories.update({name}, {where:{id:categoryId}});
+        return categories
+    }catch(error){
+        throw new Error(error)
+    }
+}
+
 const deleteCategory = async(categoryId) => {
     try{
         let results = await Categories.destroy({
@@ -32,6 +50,8 @@ const deleteCategory = async(categoryId) => {
 
 module.exports = {
     categoriesByUser,
+    updateCategory,
+    categoryById,
     createCategory,
     deleteCategory
 }

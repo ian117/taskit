@@ -1,6 +1,6 @@
-const { categoriesByUser, deleteCategory, createCategory } = require(`../services/category.service`);
+const { categoriesByUser, deleteCategory, createCategory, categoryById, updateCategory } = require(`../services/category.service`);
 
-const renderCategory = async(request, response, next) => {    
+const render = async(request, response, next) => {    
     try{
         let {id, firstname, lastname} = request.user;
         let username = `${firstname} ${lastname}`;
@@ -26,6 +26,28 @@ const create = async(request, response, next) => {
     }
 }
 
+
+
+const renderEdit = async(request, response, next) => {
+    let {firstname, lastname} = request.user;    
+    let { id:categoryId } = request.params
+
+    try{
+        let username = `${firstname} ${lastname}`
+        let category = await categoryById(categoryId)
+
+        return response.render(`pages/edit-category`,{
+            title: "Editar Categorias",
+            username,
+            id: categoryId,
+            name: category.name
+        });
+    }catch(error){
+        next(error);
+    }
+
+}
+
 const _delete = async(request, response, next) => {
     //Parametro ID
     try{
@@ -37,13 +59,25 @@ const _delete = async(request, response, next) => {
     }catch(error){
         next(error);
     }
+}
 
+const update = async (request, response, next) => {
+    try{
+        let {id: categoryId} = request.params;
+        let {name} = request.body;
+        await updateCategory({name, categoryId});
+        response.redirect(`/categorias`);
+    }catch(error){
+        next(error);
+    }
 }
 
 
 
 module.exports = {
-    renderCategory,
+    render,
     create,
+    renderEdit,
+    update,
     _delete
 };
