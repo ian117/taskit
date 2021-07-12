@@ -1,1 +1,3 @@
-hallo
+ > MODELO -> VISTA -> CONTROLADOR |
+|                                 V
+ <--------------------------------

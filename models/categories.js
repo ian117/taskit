@@ -23,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     created_by: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
-        notNull: true
+        notNull: false 
       }
     }
   }, {

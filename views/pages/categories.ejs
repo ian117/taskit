@@ -1,0 +1,67 @@
+<%- include('../template/head') -%>
+<main>
+    <%- include('../template/sidebar') -%>
+    <div class="d-flex p-3 main-container">
+        <div class="container">
+            <div class="row">
+                <div class="d-title">
+                    <h2>Nueva Categoría</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 new-register">
+                    <form action="/categorias" method="POST">
+                        <div class="mb-3">
+                            <label for="name">Nombre</label>
+                            <input
+                                id="name"
+                                class="form-control"
+                                type="text"
+                                name="name"
+                                required
+                            />
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-title mt-4">
+                    <h2>Categorías</h2>
+                </div>
+            </div>
+            <div class="row table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--  -->
+                        <% categories.forEach((category, index) => { %>
+                        <tr>
+                            <th scope="row"><%= index + 1 %></th>
+                            <td><%= category.name %></td>
+                            <td>
+                                <a href="/categorias/editar/<%= category.id %>" class="btn btn-outline-warning">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <a href="/categorias/borrar/<%= category.id %>" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <%}); %>
+                        <!--  -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

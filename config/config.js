@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config();
 
 module.exports = {
   development: {
@@ -10,7 +10,8 @@ module.exports = {
     define: {
       createdAt: 'created_at',
       updatedAt: 'updated_at'
-    }
+    },
+    loggin: true
   },
   test: {
     username: "root",

@@ -1,3 +1,17 @@
-<%- include('../template/head') %>
-<h2>hola express</h2>
-<%- include('../template/footer') %>
+<%- include('../template/head') -%>
+<%- include('../template/nav') -%>
+<div>
+    <div class="container">
+        <h2>Mantente organizado con Taskit</h2>
+        <button id="redirectThis" onclick="">Comienza ahora</button>
+    </div>
+</div>
+<script>
+    const element = document.getElementById("redirectThis")
+
+    element.addEventListener("click", () => {
+        window.location.href = "/categorias";
+    })
+</script>
+<%- include('../template/footer') -%>
+
