@@ -1,4 +1,6 @@
-const session = require("express-session");
+
+
+let sequelize = new Sequelize
 
 const sessionConf = session({
     secret: "academlo secret",

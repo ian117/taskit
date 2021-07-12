@@ -5,10 +5,12 @@ require(`dotenv`).config();
 const express = require(`express`);
 const path = require(`path`);
 const passport = require(`passport`);
-const session = require(`./utils/session.config`);
+// const session = require(`./utils/session.config`);
 const authRouter = require(`./routes/auth.routes`);
 const catRouter = require(`./routes/category.routes`);
 const userRouter = require(`./routes/user.routes`);
+const session = require("express-session");
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
 require(`./config/passport`);
 
@@ -23,7 +25,18 @@ app.set(`views`, path.join(__dirname, `views`));
 app.set(`view engine`, `ejs`);
 
 //Middleware de terceros
-app.use(session);
+let {sequelize} = require('./models')
+
+app.use(session({
+    secret: "academlo secret",
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        checkExpirationInterval: 15 * 60 * 1000,
+        expiration: 1* 60 * 60 * 1000,
+        db: sequelize
+    })
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
