@@ -66,9 +66,9 @@ const renderEdit = async(request, response, next) => {
 
 const update = async (request, response, next) => {
     try{
-        let {id: statusID} = request.params;
+        let {id:statusId} = request.params;
         let {name,color} = request.body;
-        await updateStatus({name, color, statusID});
+        await updateStatus({name, color, statusId});
         response.redirect(`/statuses`);
     }catch(error){
         next(error);

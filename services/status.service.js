@@ -38,9 +38,9 @@ const statusById = async(statusID) => {
     }
 }
 
-const updateStatus = async({name, color, categoryId}) => {
+const updateStatus = async({name, color, statusId}) => {
     try{
-        let status = await Statuses.update({name, color}, {where:{id:categoryId}});
+        let status = await Statuses.update({name, color}, {where:{id:statusId}});
         return status
     }catch(error){
         throw new Error(error)
