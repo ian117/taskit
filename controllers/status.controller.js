@@ -35,7 +35,7 @@ const _delete = async(request, response, next) => {
         await deleteStatus(statusID);
     //result puede ser mostrado en pantalla para notificar que fue eliminada la categoria
         // let result = await deleteCategory(categoryId);
-        response.redirect(`/categorias`);
+        response.redirect(`/statuses`);
     }catch(error){
         next(error);
     }
