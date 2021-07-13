@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       Statuses.belongsTo(models.Users,{
         foreignKey: 'created_by'
       })
-
-      Statuses.belongsTo(models.Colors,{
-        foreignKey: 'color'
-      })
     }
   };
   Statuses.init({

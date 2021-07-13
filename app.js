@@ -8,6 +8,7 @@ const passport = require(`passport`);
 // const session = require(`./utils/session.config`);
 const authRouter = require(`./routes/auth.routes`);
 const catRouter = require(`./routes/category.routes`);
+const statusRouter = require(`./routes/status.routes`);
 const userRouter = require(`./routes/user.routes`);
 const session = require("express-session");
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
@@ -44,6 +45,7 @@ app.use(passport.session());
 //Middwre de app
 app.use(authRouter);
 app.use(catRouter);
+// app.use(statusRouter);
 app.use(userRouter);
 
 module.exports = app;
