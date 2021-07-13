@@ -1,4 +1,5 @@
 const passport = require('passport');
+const { emailOptions, sendEmail } = require('../config/nodemailer.js');
 const {newUser} = require('../services/auth.service.js');
 
 // const gScope = ['email', 'profile'];
@@ -28,6 +29,21 @@ const LocalStrategy = passport.authenticate('local', {
     successRedirect: '/categorias',
     failureRedirect: '/login'
 });
+
+const resetPassword = async(request, response, next) => {
+    try{
+        const {email} = request.body;
+
+        emailOptions.to = email; ///hacia el cliente
+        emailOptions.subject = 'Restablecimiento de password'; //Restablecimiento de password
+        emailOptions.body = 'Para restablecimiento de password da click en el siguiente enlace';
+        await sendEmail(emailOptions);
+        response.send('Se ha enviado el correo satisfactoriamente');
+
+    }catch(error){
+        next(error);
+    }
+}
 
 const renderLogin = (req, res) => {
     res.render("pages/login", {title: "Iniciar sesión"});
