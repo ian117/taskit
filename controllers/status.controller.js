@@ -1,6 +1,7 @@
 const { statusesByUser,
         createStatus,
-        deleteStatus } = require('../services/status.service')
+        deleteStatus,
+        statusById } = require('../services/status.service')
 
 const render = async(request, response, next) => {    
     try{
@@ -41,9 +42,31 @@ const _delete = async(request, response, next) => {
     }
 }
 
+const renderEdit = async(request, response, next) => {
+    let {firstname, lastname} = request.user;    
+    let { id:statusID } = request.params
+
+    try{
+        let username = `${firstname} ${lastname}`
+        let status = await statusById(statusID)
+
+        return response.render(`pages/edit-status`,{
+            title: "Editar Status",
+            username,
+            id: statusID,
+            name: status.name,
+            color: status.color
+        });
+    }catch(error){
+        next(error);
+    }
+
+}
+
 
 module.exports = {
     render,
     create,
-    _delete
+    _delete,
+    renderEdit
 }

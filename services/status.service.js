@@ -29,8 +29,18 @@ const deleteStatus = async(StatusID) => {
     }
 }
 
+const statusById = async(statusID) => {
+    try{
+        let status = await Statuses.findByPk(statusID);
+        return status
+    }catch(error){
+        throw new Error(error)
+    }
+}
+
 module.exports = {
     statusesByUser,
     createStatus,
-    deleteStatus
+    deleteStatus,
+    statusById
 }
