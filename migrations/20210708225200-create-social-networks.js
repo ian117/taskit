@@ -4,9 +4,8 @@ module.exports = {
     await queryInterface.createTable('social_networks', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER  //¿ STRING ?
+        type: Sequelize.STRING
       },
       user_id: {
         type: Sequelize.INTEGER, 
