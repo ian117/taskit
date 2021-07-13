@@ -38,9 +38,19 @@ const statusById = async(statusID) => {
     }
 }
 
+const updateStatus = async({name, color, categoryId}) => {
+    try{
+        let status = await Statuses.update({name, color}, {where:{id:categoryId}});
+        return status
+    }catch(error){
+        throw new Error(error)
+    }
+}
+
 module.exports = {
     statusesByUser,
     createStatus,
     deleteStatus,
-    statusById
+    statusById,
+    updateStatus
 }

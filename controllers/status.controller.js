@@ -1,7 +1,8 @@
 const { statusesByUser,
         createStatus,
         deleteStatus,
-        statusById } = require('../services/status.service')
+        statusById,
+        updateStatus } = require('../services/status.service')
 
 const render = async(request, response, next) => {    
     try{
@@ -63,10 +64,22 @@ const renderEdit = async(request, response, next) => {
 
 }
 
+const update = async (request, response, next) => {
+    try{
+        let {id: statusID} = request.params;
+        let {name,color} = request.body;
+        await updateStatus({name, color, statusID});
+        response.redirect(`/statuses`);
+    }catch(error){
+        next(error);
+    }
+}
+
 
 module.exports = {
     render,
     create,
     _delete,
-    renderEdit
+    renderEdit,
+    update
 }
