@@ -18,8 +18,19 @@ const statusesByUser = async(userId) => {
     }
 }
 
+const deleteStatus = async(StatusID) => {
+    try{
+        let results = await Statuses.destroy({
+            where: {id: StatusID}
+        });
+        return results
+    }catch(error){
+        throw new Error(error);
+    }
+}
 
 module.exports = {
     statusesByUser,
-    createStatus
+    createStatus,
+    deleteStatus
 }

@@ -1,5 +1,6 @@
 const { statusesByUser,
-        createStatus } = require('../services/status.service')
+        createStatus,
+        deleteStatus } = require('../services/status.service')
 
 const render = async(request, response, next) => {    
     try{
@@ -27,7 +28,22 @@ const create = async(request, response, next) => {
     }
 }
 
+const _delete = async(request, response, next) => {
+    try{
+        // let {id: userId} = request.user;
+        let statusID = request.params.id;
+        await deleteStatus(statusID);
+    //result puede ser mostrado en pantalla para notificar que fue eliminada la categoria
+        // let result = await deleteCategory(categoryId);
+        response.redirect(`/categorias`);
+    }catch(error){
+        next(error);
+    }
+}
+
+
 module.exports = {
     render,
-    create
+    create,
+    _delete
 }
