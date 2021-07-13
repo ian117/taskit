@@ -88,6 +88,7 @@ passport.serializeUser(async (profile, done) => {
     }
     //Firmar los datos del usuario
     return done(null, profile);
+
 });
 
 

@@ -14,11 +14,7 @@ module.exports = {
       },
       color: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'colors',
-          key: 'id'
-        }
+        type: Sequelize.STRING,
       },
       created_by: {
         type: Sequelize.INTEGER,
