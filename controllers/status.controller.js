@@ -16,6 +16,18 @@ const render = async(request, response, next) => {
     }
 };
 
+const create = async(request, response, next) => {
+    try{
+        let {id: userId} = request.user;
+        let {name,color} = request.body;
+        await createStatus({name, color,userId});
+        response.redirect(`/statuses`);
+    }catch(error){
+        next(error);
+    }
+}
+
 module.exports = {
-    render
+    render,
+    create
 }
