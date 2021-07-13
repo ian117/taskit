@@ -6,6 +6,13 @@ const LocalStrategy = require(`passport-local`).Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const { Users } = require(`../models`);
+const {
+    newUser,
+    checkUserExist,
+    linkUserProvider,
+    randPasswd,
+} = require("../services/auth.service");
+
 
 passport.use(new LocalStrategy({
     usernameField: `email`
@@ -41,7 +48,8 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FB_CLIENTID,
     clientSecret: process.env.FB_SECRET,
-    callbackURL: process.env.FB_REDIRECT_URI
+    callbackURL: process.env.FB_REDIRECT_URI,
+    profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified']
   },
   (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
@@ -53,8 +61,45 @@ passport.use(new FacebookStrategy({
 //Serialización
 //firmar los datos del usuario
 passport.serializeUser(async(profile, done) => {
+    //Google y Facebook
+    if (profile.provider) {
+        //Vamos a obtener los datos del usuario a partir del ID
+        let email = profile._json.email;
+
+        //1. Comprobar si el correo obtenido ya está registrado en nuestro sistema
+        //2. Si no existe... -> crear una cuenta con los datos que recibo del proveedor
+        //3. Si existe... -> vincular la cuenta local con la cuenta del proveedor
+        let user = await checkUserExist(email);
+        let providerId = profile.id;
+        
+        let firstname = profile.provider === "google" ? profile.given_name : profile.name.givenName;
+        let lastname = profile.provider === "google" ? profile.family_name : profile.name.familyName;
+
+        let userObj = {
+            firstname,
+            lastname,
+            email,
+            password: randPasswd(),
+        };
+        
+        if (user) {
+            let userId = user.id;
+            //Ligamos la cuenta local con la del proveedor
+            await linkUserProvider(providerId, userId, profile.provider);
+            return done(null, user);
+        } else {
+            //Creamos la cuenta local para el proveedor
+            let newUserObj = await newUser(userObj);
+            let userId = newUserObj.id;
+            //Ligamos la cuenta local con la del proveedor
+            await linkUserProvider(providerId, userId, profile.provider);
+            return done(null, newUserObj);
+        }
+    }
+
     //Firmar los datos del usuario
     return done(null, profile);
+
 });
 
 
