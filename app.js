@@ -45,7 +45,7 @@ app.use(passport.session());
 //Middwre de app
 app.use(authRouter);
 app.use(catRouter);
-// app.use(statusRouter);
+app.use(statusRouter);
 app.use(userRouter);
 
 module.exports = app;
