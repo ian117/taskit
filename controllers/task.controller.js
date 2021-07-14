@@ -8,7 +8,8 @@ const {
     tasksByUser,
     createTask,
     taskById,
-    updatetask
+    updatetask,
+    deleteTask
 } = require('../services/task.service')
 
 
@@ -77,10 +78,24 @@ const update = async (request, response, next) => {
     }
 }
 
+const _delete = async(request, response, next) => {
+    try{
+        // let {id: userId} = request.user;
+        let TaskID = request.params.id;
+        await deleteTask(TaskID);
+    //result puede ser mostrado en pantalla para notificar que fue eliminada la categoria
+        // let result = await deleteCategory(categoryId);
+        response.redirect(`/tasks`);
+    }catch(error){
+        next(error);
+    }
+}
+
 
 module.exports = {
     render,
     create,
     renderEdit,
-    update
+    update,
+    _delete
 }

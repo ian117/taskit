@@ -35,9 +35,22 @@ const updatetask = async({title, description, due_date, taskID, category_id, sta
         throw new Error(error)
     }
 }
+
+const deleteTask = async(TaskID) => {
+    try{
+        let results = await Tasks.destroy({
+            where: {id: TaskID}
+        });
+        return results
+    }catch(error){
+        throw new Error(error);
+    }
+}
+
 module.exports = {
     tasksByUser,
     createTask,
     taskById,
-    updatetask
+    updatetask,
+    deleteTask
 }
