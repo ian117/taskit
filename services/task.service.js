@@ -9,6 +9,16 @@ const tasksByUser = async(userId) => {
     }
 }
 
+const createTask = async({title, description, due_date, userId, category_id, status_id, completed}) => {
+    try{
+        let task = await Tasks.create({title, description, due_date,user_id: userId,category_id,status_id,completed});
+        return task
+    }catch(error){
+        throw new Error(error);
+    }
+}
+
 module.exports = {
     tasksByUser,
+    createTask
 }

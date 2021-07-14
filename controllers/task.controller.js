@@ -1,12 +1,13 @@
 const {
-    tasksByUser
-} = require('../services/task.service')
-const {
     categoriesByUser
 } = require('../services/category.service')
 const {
     statusesByUser
 } = require('../services/status.service')
+const {
+    tasksByUser,
+    createTask
+} = require('../services/task.service')
 
 
 const render = async(request, response, next) => {    
@@ -28,6 +29,18 @@ const render = async(request, response, next) => {
     }
 };
 
+const create = async(request, response, next) => {
+    try{
+        let {id: userId} = request.user;
+        let {title, description,due_date,category_id,status_id,completed} = request.body;
+        await createTask({title, description,due_date, userId,category_id,status_id,completed});
+        response.redirect(`/tasks`);
+    }catch(error){
+        next(error);
+    }
+}
+
 module.exports = {
-    render
+    render,
+    create
 }

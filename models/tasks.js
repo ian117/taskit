@@ -28,32 +28,26 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
       validate: {
-        
+        notEmpty: true
       }
     },
     due_date: {
       type: DataTypes.DATE,
       validate: {
-        
+        notEmpty: true
       }
     },
     user_id: {
       type: DataTypes.INTEGER,
-      validate: {
-        allowNull: true
-      }
+      allowNull:false
     },
     category_id: {
       type: DataTypes.INTEGER,
-      validate: {
-        
-      }
+      allowNull:false
     },
     status_id: {
       type: DataTypes.INTEGER,
-      validate: {
-        
-      }
+      allowNull:false
     },
     completed: DataTypes.BOOLEAN
   }, {
