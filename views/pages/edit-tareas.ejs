@@ -1,0 +1,97 @@
+<%- include('../template/head') -%>
+<main>
+    <%- include('../template/sidebar') -%>
+    <div class="d-flex p-3 main-container">
+        <div class="container">
+            <div class="row">
+                <div class="d-title">
+                    <h2>Editar Task</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 new-register">
+                    <form action="/tasks/editar/<%= id %>" method="POST">
+                        <div class="mb-3">
+                            <label for="name">ID</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                value="<%= id %>"
+                                disabled
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="title">Title</label>
+                            <input
+                                id="title"
+                                class="form-control"
+                                type="text"
+                                name="title"
+                                value="<%= title %>"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="description">Description</label>
+                            <input
+                                id="description"
+                                class="form-control"
+                                type="text"
+                                name="description"
+                                value="<%= description %>"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="due_date">Expiration</label>
+                            <input
+                                id="due_date"
+                                class="form-control"
+                                type="text"
+                                name="due_date"
+                                value="<%= due_date %>"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_id">Category</label>
+                            <input
+                                id="category_id"
+                                class="form-control"
+                                type="text"
+                                name="category_id"
+                                value="<%= category_id %>"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="status_id">Status</label>
+                            <input
+                                id="status_id"
+                                class="form-control"
+                                type="text"
+                                name="status_id"
+                                value="<%= status_id %>"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="completed">Completed</label>
+                            <input
+                                id="completed"
+                                class="form-control"
+                                type="text"
+                                name="completed"
+                                value="<%= completed %>"
+                                required
+                            />
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Guardar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

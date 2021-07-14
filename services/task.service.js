@@ -18,7 +18,26 @@ const createTask = async({title, description, due_date, userId, category_id, sta
     }
 }
 
+const taskById = async(taskID) => {
+    try{
+        let task = await Tasks.findByPk(taskID);
+        return task
+    }catch(error){
+        throw new Error(error)
+    }
+}
+
+const updatetask = async({title, description, due_date, taskID, category_id, status_id, completed}) => {
+    try{
+        let task = await Tasks.update({title, description, due_date, category_id, status_id, completed}, {where:{id:taskID}});
+        return task
+    }catch(error){
+        throw new Error(error)
+    }
+}
 module.exports = {
     tasksByUser,
-    createTask
+    createTask,
+    taskById,
+    updatetask
 }

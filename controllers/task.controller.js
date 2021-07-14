@@ -6,7 +6,9 @@ const {
 } = require('../services/status.service')
 const {
     tasksByUser,
-    createTask
+    createTask,
+    taskById,
+    updatetask
 } = require('../services/task.service')
 
 
@@ -40,7 +42,45 @@ const create = async(request, response, next) => {
     }
 }
 
+const renderEdit = async(request, response, next) => {
+    let {firstname, lastname} = request.user;    
+    let { id:taskID } = request.params
+
+    try{
+        let username = `${firstname} ${lastname}`
+        let task = await taskById(taskID)
+
+        return response.render(`pages/edit-tareas`,{
+            title: "Editar Tarea",
+            username,
+            id: taskID,
+            title: task.title,
+            description: task.description,
+            due_date: task.due_date,
+            category_id: task.category_id,
+            status_id: task.status_id,
+            completed: task.completed
+        });
+    }catch(error){
+        next(error);
+    }
+
+}
+const update = async (request, response, next) => {
+    try{
+        let {id:taskID} = request.params;
+        let {title, description, due_date, category_id, status_id, completed} = request.body;
+        await updatetask({title, description, due_date, taskID, category_id, status_id, completed});
+        response.redirect(`/tasks`);
+    }catch(error){
+        next(error);
+    }
+}
+
+
 module.exports = {
     render,
-    create
+    create,
+    renderEdit,
+    update
 }

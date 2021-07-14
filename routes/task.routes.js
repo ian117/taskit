@@ -6,5 +6,8 @@ const taskRouter = Router()
 
 taskRouter.get('/tasks', protectRoute, taskCtrl.render)
 taskRouter.post('/tasks', protectRoute, taskCtrl.create)
+taskRouter.get('/tasks/editar/:id', protectRoute, taskCtrl.renderEdit);
+taskRouter.post('/tasks/editar/:id', protectRoute, taskCtrl.update);
+
 
 module.exports = taskRouter
