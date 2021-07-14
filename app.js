@@ -9,7 +9,8 @@ const passport = require(`passport`);
 const authRouter = require(`./routes/auth.routes`);
 const catRouter = require(`./routes/category.routes`);
 const statusRouter = require(`./routes/status.routes`);
-const userRouter = require(`./routes/user.routes`);
+const userRouter = require(`./routes/user.routes`)
+const taskRouter = require('./routes/task.routes')
 const session = require("express-session");
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
@@ -47,6 +48,7 @@ app.use(authRouter);
 app.use(catRouter);
 app.use(statusRouter);
 app.use(userRouter);
+app.use(taskRouter)
 
 module.exports = app;
 

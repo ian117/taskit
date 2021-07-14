@@ -52,9 +52,9 @@
                     </thead>
                     <tbody>
                         <!--  -->
-                        <% statuses.forEach((status, index) => { %>
+                        <% statuses.forEach((status) => { %>
                         <tr>
-                            <th scope="row"><%= index + 1 %></th>
+                            <th scope="row"><%= status.id %></th>
                             <td><%= status.name %></td>
                             <td><%= status.color %></td>
                             <td>
