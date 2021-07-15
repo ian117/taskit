@@ -48,7 +48,8 @@ app.use(authRouter);
 app.use(catRouter);
 app.use(statusRouter);
 app.use(userRouter);
-app.use(taskRouter)
+app.use(taskRouter);
+
 
 module.exports = app;
 
